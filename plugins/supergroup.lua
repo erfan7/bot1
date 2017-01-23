@@ -2363,7 +2363,7 @@ local function run(msg, matches)
 		end
 
 
-		if matches[1] == "muteuser" and is_momod(msg)  or matches[1] =='ساکت شو' and is_momod(msg) then
+		if matches[1] == "muteuser" and is_momod(msg) then
 			local chat_id = msg.to.id
 			local hash = "mute_user"..chat_id
 			local user_id = ""
@@ -2371,7 +2371,7 @@ local function run(msg, matches)
 				local receiver = get_receiver(msg)
 				local get_cmd = "mute_user"
 				muteuser = get_message(msg.reply_id, get_message_callback, {receiver = receiver, get_cmd = get_cmd, msg = msg})
-			elseif matches[1] == "ساکت شو" and matches[2] and string.match(matches[2], '^%d+$') then
+			elseif matches[1] == "muteuser" and matches[2] and string.match(matches[2], '^%d+$') then
 				local user_id = matches[2]
 				if is_muted_user(chat_id, user_id) then
 					unmute_user(chat_id, user_id)
@@ -2382,9 +2382,9 @@ local function run(msg, matches)
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] اضافه شد ["..user_id.."] به لیست کابران ساکت شده")
 					return "["..user_id.."] اضافه شد به لیست ساکت شده ها"
 				end
-			elseif matches[1] == "ساکت شو" and matches[2] and not string.match(matches[2], '^%d+$') then
+			elseif matches[1] == "muteuser" and matches[2] and not string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
-				local get_cmd = "ساکت شو"
+				local get_cmd = "mute_user"
 				local username = matches[2]
 				local username = string.gsub(matches[2], '@', '')
 				resolve_username(username, callbackres, {receiver = receiver, get_cmd = get_cmd, msg=msg})
@@ -2427,69 +2427,15 @@ local function run(msg, matches)
 		end
 
 				if matches[1] == 'ping' and not is_owner(msg) then
-			text = " ✌انلاینم عزیزم✌ "
+			text = " 🔛im active and online 🔛 "
 			reply_msg(msg.id, text, ok_cb, false)
 			elseif matches[1] == 'ping' and is_owner(msg) then
-			text = " ✌انلاینم عزیزم✌"
+			text = " 🔛im active and online 🔛"
 			reply_msg(msg.id, text, ok_cb, false)
-			return "👽مشغولیم👽"
+			return "💀I am GOD of BOT💀"
 		end
 
-		if matches[1] == 'قفل لینک' and not is_owner(msg) then
-			text = "لینک قفل شد"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'قفل لینک and is_owner(msg) then
-			text = " لینک قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			return "لینک قفل است"
-		end
-	    
-		if matches[1] == 'قفل عکس' and not is_owner(msg) then
-			text = "عکس قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'قفل لینک and is_owner(msg) then
-			text = " عکس قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			return "عکس قفل است"
-		end
-	
-        if matches[1] == 'قفل پیام رگباری' and not is_owner(msg) then
-			text = "پیام رگباری قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'قفل لینک and is_owner(msg) then
-			text = " پیام رگباری قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			return "پیام رگباری قفل است"
-		end	
-
-        if matches[1] == 'قفل گیف' and not is_owner(msg) then
-			text = "گیف قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'قفل لینک and is_owner(msg) then
-			text = "گیف قفل است"
-			reply_msg(msg.id, text, ok_cb, false)
-			return "گیف قفل است"
-		end	
-
-	    if matches[1] == 'قفل فحش' and not is_owner(msg) then
-			text = "قفل فحش فعال است"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'قفل لینک and is_owner(msg) then
-			text = "قفل فحش فعال است"
-			reply_msg(msg.id, text, ok_cb, false)
-			return "قفل فحش فعال است"
-		end
-	 
-    	if matches[1] == 'فعال شو' and not is_owner(msg) then
-			text = "فعالم"
-			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'قفل لینک and is_owner(msg) then
-			text = "فعالم"
-			reply_msg(msg.id, text, ok_cb, false)
-			return "فعالم"
-		end
-	
-		if matches[1] == 'peer_id' and is_admin1(msg)then
+			if matches[1] == 'peer_id' and is_admin1(msg)then
 			text = msg.to.peer_id
 			reply_msg(msg.id, text, ok_cb, false)
 			post_large_msg(receiver, text)
@@ -2588,7 +2534,6 @@ return {
 	"^[#!/]([Ll]ock) (.*)$",
 	"^[#!/]([Uu]nlock) (.*)$",
 	"^[#!/]([Mm]ute) ([^%s]+)$",
-	'^[/!#](ساکت شو)$',
 	"^[#!/]([Uu]nmute) ([^%s]+)$",
 	"^[#!/]([Mm]uteuser)$",
 	"^[#!/]([Mm]uteuser) (.*)$",
@@ -2598,12 +2543,6 @@ return {
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^([Pp]ing)$",
-	"^(قفل لینک)$",
-	"^(قفل عکس)$",
-	"^(قفل پیام رگباری)$",
-	"^(قفل گیف)$",
-	"^(قفل فحش)$",
-	"^(فعال شو)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
