@@ -2418,7 +2418,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "🔺اگر مشکلی دارید به کانال @Permag_bots مراجعه کنید"
+			text = "sent your /owner/this message"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
@@ -2426,7 +2426,16 @@ local function run(msg, matches)
 			return super_help()
 		end
 
-		if matches[1] == 'peer_id' and is_admin1(msg)then
+				if matches[1] == 'ping' and not is_owner(msg) then
+			text = " 🔛im active and online 🔛 "
+			reply_msg(msg.id, text, ok_cb, false)
+			elseif matches[1] == 'ping' and is_owner(msg) then
+			text = " 🔛im active and online 🔛"
+			reply_msg(msg.id, text, ok_cb, false)
+			return "💀I am GOD of BOT💀"
+		end
+
+			if matches[1] == 'peer_id' and is_admin1(msg)then
 			text = msg.to.peer_id
 			reply_msg(msg.id, text, ok_cb, false)
 			post_large_msg(receiver, text)
@@ -2533,7 +2542,7 @@ return {
 	"^[#!/]([Rr]ules)$",
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
-	"^[#!/]([Hh]elp)$",
+	"^([Pp]ing)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
