@@ -253,17 +253,17 @@ end
 
 
 
-local function قفل_کردن_لینک(msg, data, target)
+local function lock_group_links(msg, data, target)
   if not is_momod(msg) then
     return
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '✅ لینک قفل شد'
+    return '✅ link posting is lock💀'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ لینک قفل بود'
+    return '✅ link posting was locked💀'
   end
 end
 
@@ -1508,12 +1508,12 @@ local function run(msg, matches)
 	local print_name = user_print_name(msg.from):gsub("‮", "")
 	local name_log = print_name:gsub("_", " ")
 	local data = load_data(_config.moderation.data)
-		if matches[1] == 'اضافه شو' and not matches[2] then
+		if matches[1] == 'add' and not matches[2] then
 			if not is_admin1(msg) and not is_support(support_id) then
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, 'ربات در گروه فعال شد👽', ok_cb, false)
+				return reply_msg(msg.id, '🚀Bot added to this group🚀', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
@@ -2290,8 +2290,8 @@ local function run(msg, matches)
 		end
 		if matches[1] == 'unmute' and is_momod(msg) then
 			local chat_id = msg.to.id
-			if matches[2] == 'صدا' then
-			local msg_type = 'صدا'
+			if matches[2] == 'audio' then
+			local msg_type = 'Audio'
 				if is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: unmute "..msg_type)
 					unmute(chat_id, msg_type)
@@ -2300,8 +2300,8 @@ local function run(msg, matches)
 					return "Mute "..msg_type.." is already off"
 				end
 			end
-			if matches[2] == 'عکس' then
-			local msg_type = 'عکس'
+			if matches[2] == 'photo' then
+			local msg_type = 'Photo'
 				if is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: unmute "..msg_type)
 					unmute(chat_id, msg_type)
@@ -2363,15 +2363,15 @@ local function run(msg, matches)
 		end
 
 
-		if matches[1] == "ساکت کردن" and is_momod(msg) then
+		if matches[1] == "muteuser" and is_momod(msg) then
 			local chat_id = msg.to.id
-			local hash = "کردن_ساکت"..chat_id
+			local hash = "mute_user"..chat_id
 			local user_id = ""
 			if type(msg.reply_id) ~= "nil" then
 				local receiver = get_receiver(msg)
-				local get_cmd = "ساکت کردن"
-				ساکت کردن = get_message(msg.reply_id, get_message_callback, {receiver = receiver, get_cmd = get_cmd, msg = msg})
-			elseif matches[1] == "ساکت کردن" and matches[2] and string.match(matches[2], '^%d+$') then
+				local get_cmd = "mute_user"
+				muteuser = get_message(msg.reply_id, get_message_callback, {receiver = receiver, get_cmd = get_cmd, msg = msg})
+			elseif matches[1] == "muteuser" and matches[2] and string.match(matches[2], '^%d+$') then
 				local user_id = matches[2]
 				if is_muted_user(chat_id, user_id) then
 					unmute_user(chat_id, user_id)
@@ -2382,7 +2382,7 @@ local function run(msg, matches)
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] اضافه شد ["..user_id.."] به لیست کابران ساکت شده")
 					return "["..user_id.."] اضافه شد به لیست ساکت شده ها"
 				end
-			elseif matches[1] == "ساکت کردن" and matches[2] and not string.match(matches[2], '^%d+$') then
+			elseif matches[1] == "muteuser" and matches[2] and not string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
 				local get_cmd = "mute_user"
 				local username = matches[2]
@@ -2426,13 +2426,13 @@ local function run(msg, matches)
 			return super_help()
 		end
 
-				if matches[1] == 'فعالی' and not is_owner(msg) then
-			text = " "
+				if matches[1] == 'ping' and not is_owner(msg) then
+			text = " 🔛im active and online 🔛 "
 			reply_msg(msg.id, text, ok_cb, false)
-			elseif matches[1] == 'فعالی' and is_owner(msg) then
-			text = " 🔛مشغولم 🔛"
+			elseif matches[1] == 'ping' and is_owner(msg) then
+			text = " 🔛im active and online 🔛"
 			reply_msg(msg.id, text, ok_cb, false)
-			return "💀انلاینم💀"
+			return "💀I am GOD of BOT💀"
 		end
 
 			if matches[1] == 'peer_id' and is_admin1(msg)then
@@ -2494,7 +2494,7 @@ end
 
 return {
   patterns = {
-	"^[#!/](اضافه شو)$",
+	"^[#!/]([Aa]dd)$",
 	"^[#!/]([Rr]em)$",
 	"^[#!/]([Mm]ove) (.*)$",
 	"^[#!/]([Ii]nfo)$",
@@ -2532,9 +2532,8 @@ return {
 	"^[#!/]([Ss]etusername) (.*)$",
 	"^[#!/]([Dd]el)$",
 	"^[#!/]([Ll]ock) (.*)$",
-	^[#!/](قفل کردن) (.*)$"
 	"^[#!/]([Uu]nlock) (.*)$",
-	"^[#!/](ساکت کردن) ([^%s]+)$",
+	"^[#!/]([Mm]ute) ([^%s]+)$",
 	"^[#!/]([Uu]nmute) ([^%s]+)$",
 	"^[#!/]([Mm]uteuser)$",
 	"^[#!/]([Mm]uteuser) (.*)$",
@@ -2543,7 +2542,7 @@ return {
 	"^[#!/]([Rr]ules)$",
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
-	"^(فعالی)$",
+	"^([Pp]ing)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]utelist)$",
     "[#!/](mp) (.*)",
@@ -2551,9 +2550,9 @@ return {
     "^([https?://w]*.?telegram.me/joinchat/%S+)$",
 	"msg.to.peer_id",
 	"%[(document)%]",
-	"%[(عکس)%]",
-	"%[(ویدئو)%]",
-	"%[(صدا)%]",
+	"%[(photo)%]",
+	"%[(video)%]",
+	"%[(audio)%]",
 	"%[(contact)%]",
 	"^!!tgservice (.+)$",
   },
