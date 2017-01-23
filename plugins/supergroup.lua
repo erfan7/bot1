@@ -259,11 +259,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return '✅ ارسال لینک در حال حاضر قفل است'
+    return '✅ link posting is lock💀'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ ارسال لینک قفل شد'
+    return '✅ link posting was locked💀'
   end
 end
 
@@ -273,11 +273,11 @@ local function unlock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'no' then
-    return '✅ ارسال لینک آزاد است'
+    return 'send link is free🔰'
   else
     data[tostring(target)]['settings']['lock_link'] = 'no'
     save_data(_config.moderation.data, data)
-    return '✅ ارسال لینک آزاد شد'
+    return 'send link is free🔰'
   end
 end
 
@@ -340,9 +340,9 @@ local function lock_group_fosh(msg, data, target)
   local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُده بۅد🔒'
+    return 'filter all of the bad worlds🚀'
     else
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُده بۅد🔒'
+    return 'filter all of the bad worlds🚀'
   end
   end
     data[tostring(target)]['settings']['fosh'] = 'yes'
@@ -350,9 +350,9 @@ local function lock_group_fosh(msg, data, target)
     local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُد🔒'
+    return 'filter all of the bad worlds🚀'
     else
-    return '🔐فیلتږینگ کلماټ +18 دږ سوپږ گږۅه فعاڶ شُد🔒'
+    return 'filter all of the bad worlds🚀'
   end
 end
 
@@ -390,11 +390,11 @@ local function lock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return '✅ اسپم فعال است . پیام های طولانی پاک خواهند شد'
+    return 'all spam posting delet💀'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ اسپم فعال شد . پیام های طولانی پاک خواهند شد '
+    return 'all spam posting delet💀 '
   end
 end
 
@@ -418,11 +418,11 @@ local function lock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return '✅ فلود فعال است - پیام های رگباری پاک میشوند'
+    return '✅ flooding is active.all flood not allow to this group⚡️'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ فلود فعال شد - پیام های رگباری پاک میشوند'
+    return 'flooding is active.all flood not allow to this group⚡️'
   end
 end
 
@@ -591,7 +591,7 @@ local function lock_group_sticker(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ ارسال استیکر برای کاربران قفل شد'
+    return 'sticker not alowed to sent💀'
   end
 end
 
@@ -620,9 +620,9 @@ local function lock_group_fwd(msg, data, target)
   local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-  return ' 🔐قُفل فۅږواږد دږ سوپږ گرۅه فعال بود🔒'
+  return ' forward not allow to this gp📛'
   else
-    return '🔐قُفل فۅږواږد دږ سوپږ گرۅه فعال بود🔒'
+    return 'forward not allow to this gp📛'
   end
   end
     data[tostring(target)]['settings']['lock_fwd'] = 'yes'
@@ -630,9 +630,9 @@ local function lock_group_fwd(msg, data, target)
     local hash = 'group:'..msg.to.id
   local group_lang = redis:hget(hash,'lang')
   if group_lang then
-    return '🔐قفل فۅږۅاږد دږ سۅپږ گږۅة فعاڶ شُد🔒'
+    return 'forward not allow to this gp📛'
     else
-    return ' 🔐قفل فۅږۅاږد دږ سۅپږ گږۅة فعاڶ شُد🔒'
+    return ' forward not allow to this gp📛'
   end
 end
 
@@ -726,7 +726,7 @@ local function lock_group_contacts(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_contacts'] = 'yes'
     save_data(_config.moderation.data, data)
-    return '✅ ارسال اطلاعات تماس قفل شد - گزینه کانتکت تلگرام'
+    return 'contacts is blocke🎯'
   end
 end
 
@@ -736,11 +736,11 @@ local function unlock_group_contacts(msg, data, target)
   end
   local group_contacts_lock = data[tostring(target)]['settings']['lock_contacts']
   if group_contacts_lock == 'no' then
-    return '✅ قفل ارسال اطلاعات تماس غیرفعال  شد - گزینه کانتکت تلگرام'
+    return 'contacts is blocke🎯'
   else
     data[tostring(target)]['settings']['lock_contacts'] = 'no'
     save_data(_config.moderation.data, data)
-    return '✅ قفل ارسال اطلاعات تماس غیرفعال  شد - گزینه کانتکت تلگرام'
+    return 'contacts is blocke🎯'
   end
 end
 
@@ -987,11 +987,11 @@ local function promote2(receiver, member_username, user_id)
     return send_large_msg(receiver, '❌سوپر گروه ادد نشده')
   end
   if data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, member_username..' در حال حاضر ناظر است 👽.')
+    return send_large_msg(receiver, member_username..'promoted🚀.')
   end
   data[group]['moderators'][tostring(user_id)] = member_tag_username
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, member_username..' ✅ ترفیع گرفت')
+  send_large_msg(receiver, member_username..' promoted🚀')
 end
 
 local function demote2(receiver, member_username, user_id)
@@ -1005,7 +1005,7 @@ local function demote2(receiver, member_username, user_id)
   end
   data[group]['moderators'][tostring(user_id)] = nil
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, member_username..' ✅ ترفیع لغو شد.')
+  send_large_msg(receiver, member_username..' promoted🚀 canceld')
 end
 
 local function modlist(msg)
@@ -1513,7 +1513,7 @@ local function run(msg, matches)
 				return
 			end
 			if is_super_group(msg) then
-				return reply_msg(msg.id, '👽ربات در گروه فعال است', ok_cb, false)
+				return reply_msg(msg.id, '🚀Bot added to this group🚀', ok_cb, false)
 			end
 			print("SuperGroup "..msg.to.print_name.."("..msg.to.id..") added")
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] added SuperGroup")
