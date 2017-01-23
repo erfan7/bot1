@@ -46,6 +46,3 @@ data/tmp/*.*
 !data/tmp/.gitkeep
 !data/photos/.gitkeep
 !data/.gitkeep
-
-plugins/supergroup.lua
-*.lua
